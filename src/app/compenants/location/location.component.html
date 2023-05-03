@@ -1,0 +1,221 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Numero</th>
+        <th scope="col">date debut</th>
+        <th scope="col">date fin</th>
+        <th scope="col">kilometrage debut</th>
+        <th scope="col">kilometrage fin</th>
+        <th scope="col">heure_debut</th>
+        <th scope="col">heure_fin</th>
+        <th scope="col">voiture_numero</th>
+        <th scope="col">client_numero</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let l of locations | async">
+        <td scope="row">{{ l.numero }}</td>
+        <td>{{ l.date_debut }}</td>
+        <td>{{ l.date_fin }}</td>
+        <td>{{ l.kilometrage_debut }}</td>
+        <td>{{ l.kilometrage_fin }}</td>
+        <td>{{ l.heure_debut }}</td>
+        <td>{{ l.heure_fin }}</td>
+        <td>{{ l.vehicule }}</td>
+        <td>{{ l.client }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary"
+            [routerLink]="['/edit-location', l.id]"
+          >
+            Modifier
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deletelocation(l.id)"
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    data-bs-whatever="@getbootstrap"
+  >
+    Ajouter
+  </button>
+</div>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form #f="ngForm" (ngSubmit)="addlocation(f)">
+          <div class="mb-3">
+            <label for="message-text" type="text" class="col-form-label"
+              >numero:</label
+            >
+            <input
+              class="form-control"
+              name="numero"
+              #numero="ngModel"
+              ngModel
+              type="text"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" type="text" class="col-form-label"
+              >date début:</label
+            >
+            <input
+              class="form-control"
+              name="date_debut"
+              #date_debut="ngModel"
+              ngModel
+              type="date"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label"
+              >date de fin:</label
+            >
+            <input
+              type="date"
+              class="form-control"
+              id="recipient-name"
+              name="date_fin"
+              #date_fin="ngModel"
+              ngModel
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" type="text" class="col-form-label"
+              >kilometrage début:</label
+            >
+            <input
+              class="form-control"
+              name="kilometrage_debut"
+              #kilometrage_debut="ngModel"
+              ngModel
+              type="text"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" type="text" class="col-form-label"
+              >kilometrage fin:</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              name="kilometrage_fin"
+              #kilometrage_fin="ngModel"
+              ngModel
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" type="text" class="col-form-label"
+              >heure debut:</label
+            >
+            <input
+              class="form-control"
+              type="time"
+              name="heure_debut"
+              #heure_debut="ngModel"
+              ngModel
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" type="text" class="col-form-label"
+              >heure fin:</label
+            >
+            <input
+              class="form-control"
+              type="time"
+              name="heure_fin"
+              #heure_fin="ngModel"
+              ngModel
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" type="text" class="col-form-label"
+              >client:</label
+            >
+            <!-- <input
+              class="form-control"
+              type="text"
+              name="client"
+              #client="ngModel"
+              ngModel
+            /> -->
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="client"
+              #client="ngModel"
+              ngModel
+            >
+              <option selected>Open this select menu</option>
+              <option value="{{ c.numero }}" *ngFor="let c of clients | async">
+                {{ c.nom }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" type="text" class="col-form-label"
+              >voiture</label
+            >
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="vehicule"
+              #vehicule="ngModel"
+              ngModel
+            >
+              <option selected>Open this select menu</option>
+              <option value="{{ v.numero }}" *ngFor="let v of vehicles | async">
+                {{ v.marque }}
+              </option>
+            </select>
+            <!-- <input
+              class="form-control"
+              type="text"
+              name="vehicule"
+              #vehicule="ngModel"
+              ngModel
+            /> -->
+          </div>
+          <button type="submit" class="btn btn-success">ajouter</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

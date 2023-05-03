@@ -3,30 +3,30 @@
     <thead>
       <tr>
         <th scope="col">Nemero</th>
-        <th scope="col">type</th>
-        <th scope="col">marque</th>
-        <th scope="col">puissance</th>
+        <th scope="col">nom</th>
+        <th scope="col">prenom</th>
+        <th scope="col">adresse</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let v of vehicules | async">
-        <th scope="row">{{ v.numero }}</th>
-        <td>{{ v.type }}</td>
-        <td>{{ v.marque }}</td>
-        <td>{{ v.puissance }}</td>
+      <tr *ngFor="let c of clients | async">
+        <th scope="row">{{ c.numero }}</th>
+        <td>{{ c.nom }}</td>
+        <td>{{ c.prenom }}</td>
+        <td>{{ c.adresse }}</td>
         <td>
           <button
             type="button"
             class="btn btn-primary"
-            [routerLink]="['/edit-voiture', v.id]"
+            [routerLink]="['/edit-client', c.id]"
           >
             Modifier
           </button>
           <button
             type="button"
             class="btn btn-danger"
-            (click)="deletevehicule(v.id)"
+            (click)="deleteclient(c.id)"
           >
             Supprimer
           </button>
@@ -42,7 +42,7 @@
     data-bs-target="#exampleModal"
     data-bs-whatever="@getbootstrap"
   >
-    Ajouter voiture
+    Ajouter client
   </button>
 </div>
 <div
@@ -55,7 +55,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout voiture</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout client</h1>
         <button
           type="button"
           class="btn-close"
@@ -64,27 +64,27 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form #f="ngForm" (ngSubmit)="addvoiture(f)">
+        <form #f="ngForm" (ngSubmit)="addclient(f)">
           <div class="mb-3">
             <label for="message-text" type="text" class="col-form-label"
-              >model:</label
+              >nom:</label
             >
             <input
               class="form-control"
-              name="model"
-              #model="ngModel"
+              name="nom"
+              #nom="ngModel"
               ngModel
               type="text"
             />
           </div>
           <div class="mb-3">
             <label for="message-text" type="text" class="col-form-label"
-              >marque:</label
+              >prenom:</label
             >
             <input
               class="form-control"
-              name="marque"
-              #marque="ngModel"
+              name="prenom"
+              #prenom="ngModel"
               ngModel
               type="text"
             />
@@ -102,28 +102,17 @@
           </div>
           <div class="mb-3">
             <label for="message-text" type="text" class="col-form-label"
-              >puissance:</label
+              >adresse:</label
             >
             <input
               class="form-control"
-              name="puissance"
-              #puissance="ngModel"
+              name="adresse"
+              #adresse="ngModel"
               ngModel
               type="text"
             />
           </div>
-          <div class="mb-3">
-            <label for="message-text" type="text" class="col-form-label"
-              >type:</label
-            >
-            <input
-              class="form-control"
-              type="text"
-              name="type"
-              #type="ngModel"
-              ngModel
-            />
-          </div>
+
           <button type="submit" class="btn btn-success">ajouter</button>
         </form>
       </div>

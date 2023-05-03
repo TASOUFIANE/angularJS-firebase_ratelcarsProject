@@ -1,0 +1,62 @@
+<div class="container fluid">
+  <form #f="ngForm" (ngSubmit)="updatevoiture(f)">
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >model:</label
+      >
+      <input
+        class="form-control"
+        name="model"
+        #model="ngModel"
+        ngModel="{{ vehicule.model }}"
+        type="text"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >marque:</label
+      >
+      <input
+        class="form-control"
+        name="marque"
+        #marque="ngModel"
+        ngModel="{{ vehicule.marque }}"
+        type="text"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="recipient-name" class="col-form-label">Numero:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="recipient-name"
+        name="numero"
+        #numero
+        ngModel="{{ vehicule.numero }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >puissance:</label
+      >
+      <input
+        class="form-control"
+        name="puissance"
+        #puissance
+        ngModel="{{ vehicule.puissance }}"
+        type="text"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label">type:</label>
+      <input
+        class="form-control"
+        type="text"
+        name="type"
+        #type
+        ngModel="{{ vehicule.type }}"
+      />
+    </div>
+    <button type="submit" class="btn btn-success">sauvgarder</button>
+  </form>
+</div>

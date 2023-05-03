@@ -1,0 +1,115 @@
+<div class="container fluid">
+  <form #f="ngForm" (ngSubmit)="updatelocation(f)">
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >numero</label
+      >
+      <input
+        class="form-control"
+        name="numero"
+        #numero="ngModel"
+        ngModel="{{ location.numero }}"
+        type="text"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >date_debut</label
+      >
+      <input
+        class="form-control"
+        name="date_debut"
+        #date_debut="ngModel"
+        ngModel="{{ location.date_debut }}"
+        type="date"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="recipient-name" class="col-form-label">date_fin</label>
+      <input
+        type="date"
+        class="form-control"
+        id="recipient-name"
+        name="date_fin"
+        #date_fin="ngModel"
+        ngModel="{{ location.date_fin }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >kilometrage_debut</label
+      >
+      <input
+        class="form-control"
+        name="kilometrage_debut"
+        #kilometrage_debut="ngModel"
+        ngModel="{{ location.kilometrage_debut }}"
+        type="text"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >kilometrage_fin</label
+      >
+      <input
+        class="form-control"
+        name="kilometrage_fin"
+        #kilometrage_fin="ngModel"
+        ngModel="{{ location.kilometrage_fin }}"
+        type="text"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >heure_debut</label
+      >
+      <input
+        class="form-control"
+        name="heure_debut"
+        #heure_debut="ngModel"
+        ngModel="{{ location.heure_debut }}"
+        type="time"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >heure_fin</label
+      >
+      <input
+        class="form-control"
+        name="heure_fin"
+        #heure_fin="ngModel"
+        ngModel="{{ location.heure_fin }}"
+        type="time"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >client</label
+      >
+      <input
+        disabled
+        class="form-control"
+        name="client"
+        #client="ngModel"
+        ngModel="{{ location.client }}"
+        type="text"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="message-text" type="text" class="col-form-label"
+        >vehicule</label
+      >
+      <input
+        disabled
+        class="form-control"
+        name="vehicule"
+        #vehicule="ngModel"
+        ngModel="{{ location.vehicule }}"
+        type="text"
+      />
+    </div>
+    <button type="submit" class="btn btn-success">ajouter</button>
+  </form>
+</div>

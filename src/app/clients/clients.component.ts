@@ -8,21 +8,22 @@ import {
   deleteDoc,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-clients',
+  templateUrl: './clients.component.html',
+  styleUrls: ['./clients.component.css'],
 })
-export class HomeComponent implements OnInit {
-  vehicules!: Observable<any>;
+export class ClientsComponent implements OnInit {
+  clients!: Observable<any>;
   constructor(private fs: Firestore) {
     this.getData();
   }
 
   ngOnInit(): void {}
-  addvoiture(f: any) {
+  addclient(f: any) {
     let data = f.value;
-    const instance = collection(this.fs, 'vehicule');
+    const instance = collection(this.fs, 'client');
     addDoc(instance, data)
       .then((res) => {
         console.log(res);
@@ -32,15 +33,15 @@ export class HomeComponent implements OnInit {
       });
   }
   getData() {
-    const instance = collection(this.fs, 'vehicule');
+    const instance = collection(this.fs, 'client');
     const data = collectionData(instance, { idField: 'id' });
     data.subscribe((res) => {
       console.log(res);
     });
-    this.vehicules = data;
+    this.clients = data;
   }
-  deletevehicule(id: string) {
-    const instance = doc(this.fs, 'vehicule', id);
+  deleteclient(id: string) {
+    const instance = doc(this.fs, 'client', id);
     console.log(instance);
     deleteDoc(instance)
       .then((res) => {
